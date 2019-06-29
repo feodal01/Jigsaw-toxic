@@ -15,6 +15,10 @@ In this competition, you're challenged to build a model that recognizes toxicity
 # My Solution
 There are three my final models: LSTM with attention (Keras), LSTM with pooling (PyTorch) and Bert (Hugging Face PyTorch implementation) with custom head for multiclass classification.
 
+Final Solution was blend of Keras and PyTorch LSTM's that brings 0.936**
+Bert model has not been used for final submission as i started to train Bert too late - 1 day before deadline =(
+But anyway i evaluated Bert with train-test split (1,5m / 0.3m) and it gives me best result. 
+
 PyTorch LSTM and BERT was trained with custom loss that weights identity's information.
 
 Final metric was ROC-AUC metric that combines several submetrics to balance overall performance with various aspects of unintended bias.
