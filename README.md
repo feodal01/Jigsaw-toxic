@@ -15,13 +15,24 @@ In this competition, you're challenged to build a model that recognizes toxicity
 # My Solution
 There are three my final models: LSTM with attention (Keras), LSTM with pooling (PyTorch) and Bert (Hugging Face PyTorch implementation) with custom head for multiclass classification.
 
+In keras model i used two layers of bi-LSTM with top of attention-with-context layer and simple linear layers with dropout wich outperformed best publik keras kernels with bi-LSTM and pooling. Optimizer - standart Adam + LambdaLR (as it named in pytorch)
+
+PyTorch model architechture was the same as in publik kernel but i used AdamW optimizer (Adam with decay instead of l2 regularization) instead of usual Adam from PyTorch and LambdaLR scheduler. I tryed a bunch of optimizers and schedulers here, one cycle policy too, unfortunatly onecycle policy didnt improved score this time as any of other optimizers and schedulers. So i used AdamW with LambdaLR
+
+Keras and PyTorch models were multioutput models (two heads in other word) - one output for target data, the other for aux otputs (types of toxicity).
+
+The result prediction (keras and pytorch) - weighted average of every epoch output.
+
 Final Solution was blend of Keras and PyTorch LSTM's that brings 0.936**
+
 Bert model has not been used for final submission as i started to train Bert too late - 1 day before deadline =(
-But anyway i evaluated Bert with train-test split (1,5m / 0.3m) and it gives me best result (0.937**)
+But anyway i evaluated Bert with train-test split (1,5m / 0.3m) and it gave me best result (0.938**)
+This model included custom loss from public kernel and custom head made by myself on top of classification layer for multiclass prediction.
+Due to limmit of time i did not do any preprocessing, used 1,5m rows out of 1,8 for train, only one epoch, without any lr scheduler (as i saw from later competitors solutions one of the used onecycle policy).
 
 PyTorch LSTM and BERT was trained with custom loss that weights identity's information.
 
-Also i spend a lot of time to try work liner models well but best that i have achived 0.90 with NB-SVM classifier. 
+Also i spend a lot of time trying linear models but best that i have achived 0.906** with NB-SVM classifier. 
 I added notebook with NB-SVM to save it in case.
 
-Final metric was ROC-AUC metric that combines several submetrics to balance overall performance with various aspects of unintended bias.
+Competition metric was custom ROC-AUC metric that combines several submetrics to balance overall performance with various aspects of unintended bias.
