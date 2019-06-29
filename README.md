@@ -17,8 +17,11 @@ There are three my final models: LSTM with attention (Keras), LSTM with pooling 
 
 Final Solution was blend of Keras and PyTorch LSTM's that brings 0.936**
 Bert model has not been used for final submission as i started to train Bert too late - 1 day before deadline =(
-But anyway i evaluated Bert with train-test split (1,5m / 0.3m) and it gives me best result. 
+But anyway i evaluated Bert with train-test split (1,5m / 0.3m) and it gives me best result (0.937**)
 
 PyTorch LSTM and BERT was trained with custom loss that weights identity's information.
+
+Also i spend a lot of time to try work liner models well but best that i have achived 0.90 with NB-SVM classifier. 
+I added notebook with NB-SVM to save it in case.
 
 Final metric was ROC-AUC metric that combines several submetrics to balance overall performance with various aspects of unintended bias.
